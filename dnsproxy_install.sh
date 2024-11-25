@@ -152,8 +152,9 @@ if [ "$1" = "install" ]; then
 else
   # Uninstall
   if systemctl list-units | grep "$service_file" > /dev/null; then
-    echo "stopping the systemd service \"$service_file\""
+    echo "stopping and disabling the systemd service \"$service_file\""
     systemctl stop "$service_file"
+    systemctl disable "$service_file"
   else
     echo "no systemd service \"$service_file\" running"
   fi
