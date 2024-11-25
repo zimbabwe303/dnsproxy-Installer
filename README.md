@@ -1,6 +1,6 @@
-# DNS Proxy Installer
+# dnsproxy Installer
 
-A Linux shell script installing or uninstalling the [dnsproxy](https://github.com/AdguardTeam/dnsproxy) binary. Cleanly creates/removes all the needed stuff (working user, group, systemd service, etc.). 
+A Linux shell script installing or uninstalling the AdguardTeam's [dnsproxy](https://github.com/AdguardTeam/dnsproxy) binary. Cleanly creates/removes all the needed stuff (working user, group, systemd service, etc.).
 
 All the default settings can be found at the beginning of the file, default upstream is set to quad9-dnscrypt-ip4-nofilter-ecs-pri.
 
