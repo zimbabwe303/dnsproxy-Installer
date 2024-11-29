@@ -22,7 +22,8 @@ https://github.com/DNSCrypt/dnscrypt-resolvers
 
 If you're getting a warning concerning the UDP buffer size being too small add the following lines to `/etc/sysctl.conf` and reboot:
 
-``
+```
 net.core.rmem_max=7500000
 net.core.wmem_max=7500000
-``
+```
+
