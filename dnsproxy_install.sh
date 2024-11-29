@@ -4,8 +4,10 @@
 # default upstream is quad9-dnscrypt-ip4-nofilter-ecs-pri
 # see the full list at https://dnscrypt.info/public-servers
 # or https://github.com/DNSCrypt/dnscrypt-resolvers
-default_upstream="sdns://AQYAAAAAAAAADTkuOS45LjEyOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA"
+
 default_bootstrap="8.8.8.8"
+cache_ttl=300  # seconds
+# default upstream servers see below in the $config variable definition
 
 bin="dnsproxy"
 bin_dir="/usr/local/bin"
@@ -18,19 +20,20 @@ group="dnsproxy"
 
 config="---
 bootstrap:
-  - \"$default_bootstrap:53\"
+  - '$default_bootstrap:53'
 listen-addrs:
-  - \"0.0.0.0\"
+  - '0.0.0.0'
 listen-ports:
   - 53
-max-go-routines: 0
-ratelimit: 0
-ratelimit-subnet-len-ipv4: 24
-ratelimit-subnet-len-ipv6: 64
-udp-buf-size: 0
 upstream:
-  - \"$default_upstream\"
-timeout: '10s'"
+  # quad9-dnscrypt-ip4-nofilter-ecs-pri
+  - 'sdns://AQYAAAAAAAAADTkuOS45LjEyOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
+  - 'sdns://AQYAAAAAAAAAEzE0OS4xMTIuMTEyLjEyOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
+upstream-mode: 'load_balance'
+timeout: '10s'
+http3: true
+cache: true
+cache-min-ttl: $cache_ttl"
 
 service="[Unit]
 Description=dnsproxy
@@ -128,6 +131,7 @@ if [ "$1" = "install" ]; then
   if [ ! -f "$bin_dir"/"$bin" ]; then
     echo "copying the binary \"$bin\" to \"$bin_dir\""
     cp "$bin" "$bin_dir"/"$bin"
+    chmod +x "$bin_dir"/"$bin"
   else
     echo "binary file \"$bin_dir/$bin\" already exists"
   fi
