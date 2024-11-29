@@ -33,7 +33,8 @@ upstream-mode: 'load_balance'
 timeout: '10s'
 http3: true
 cache: true
-cache-min-ttl: $cache_ttl"
+cache-min-ttl: $cache_ttl
+refuse-any: true"
 
 service="[Unit]
 Description=dnsproxy

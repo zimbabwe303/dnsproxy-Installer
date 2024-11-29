@@ -1,0 +1,23 @@
+---
+bootstrap:
+  - '8.8.8.8:53'
+listen-addrs:
+  - '0.0.0.0'
+listen-ports:
+  - 53
+upstream:
+  # quad9-dnscrypt-ip4-nofilter-ecs-pri
+  - 'sdns://AQYAAAAAAAAADTkuOS45LjEyOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
+  - 'sdns://AQYAAAAAAAAAEzE0OS4xMTIuMTEyLjEyOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
+  # dct-de
+  - 'sdns://AQcAAAAAAAAADTE4NS4xNDAuMTIuOTMgK4UG-UiZwUJhkj7RtUmAR6b0tunp7iVmJgQqTxM3x6MWMi5kbnNjcnlwdC1jZXJ0LmRjdC1kZQ'
+  # dct-fr
+  - 'sdns://AQcAAAAAAAAADjEwMy44Mi4xMDEuMTUzIPw1gIRq8zr1ToLoDc3i8bVAHw-7tck7WccvJtTyJ2T2FjIuZG5zY3J5cHQtY2VydC5kY3QtZnI'
+  # dct-nl
+  - 'sdns://AQcAAAAAAAAADDUuMjU1LjEwNS4yNCBmA48agbqHYOdV4gbPDt9f9ZMTAQzZfznm0NcBa8e_QRYyLmRuc2NyeXB0LWNlcnQuZGN0LW5s'
+upstream-mode: 'parallel'
+timeout: '10s'
+http3: true
+cache: true
+cache-min-ttl: 300
+refuse-any: true

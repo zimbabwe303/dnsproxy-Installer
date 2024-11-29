@@ -17,3 +17,12 @@ Purge: `dnsproxy_install.sh -p uninstall`
 ## List of public DNSCrypt/DoH servers
 
 https://github.com/DNSCrypt/dnscrypt-resolvers
+
+## UDP buffer size
+
+If you're getting a warning concerning the UDP buffer size being too small add the following lines to `/etc/sysctl.conf` and reboot:
+
+``
+net.core.rmem_max=7500000
+net.core.wmem_max=7500000
+``
